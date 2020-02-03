@@ -20,7 +20,7 @@ Include: software-properties-common
     # Set system locale
     export LC_ALL=C
     export OMPI_MCA_btl_vader_single_copy_mechanism=none
-    export PATH=$PATH:/opt/openfoam7
+    export PATH=$PATH:/opt/openfoam7/bin
 
 %post -c /bin/bash
 
@@ -48,7 +48,7 @@ Include: software-properties-common
     apt autoremove -y 
 
 %help 
-    This is a OpenFoam with  container. 
+    This is a OpenFoam 7 container. 
 
 
 %test
