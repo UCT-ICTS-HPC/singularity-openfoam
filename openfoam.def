@@ -30,7 +30,8 @@ Include: software-properties-common
     && apt-get install -y --allow-unauthenticated \
         vim\
         wget\
-        software-properties-common
+        software-properties-common\
+        gpg-agent
 	rm -rf /var/lib/apt/lists/*
     
     # OpenFoam Installation and Configuration without ParaView
