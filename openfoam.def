@@ -29,12 +29,12 @@ Include: software-properties-common
     export DEBIAN_FRONTEND=noninteractive; apt-get -y update --allow-unauthenticated \
     && apt-get install -y --allow-unauthenticated \
         vim\
-        ssh\
         wget\
         software-properties-common
 	rm -rf /var/lib/apt/lists/*
     
     # OpenFoam Installation and Configuration without ParaView
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6C0DAC728B29D817
     sh -c "wget -O - http://dl.openfoam.org/gpg.key | apt-key add -"
 	add-apt-repository http://dl.openfoam.org/ubuntu
 	apt-get update
