@@ -26,8 +26,12 @@ Include: software-properties-common
 
     # Update Ubuntu Cache and begin install
     apt-add-repository universe
-    apt update -y
-    apt-get install -y vim ssh wget software-properties-common
+    export DEBIAN_FRONTEND=noninteractive; apt-get -y update --allow-unauthenticated \
+    && apt-get install -y --allow-unauthenticated \
+        vim\
+        ssh\
+        wget\
+        software-properties-common
 	rm -rf /var/lib/apt/lists/*
     
     # OpenFoam Installation and Configuration without ParaView
