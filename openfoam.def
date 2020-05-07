@@ -1,7 +1,6 @@
-Bootstrap: debootstrap
-MirrorURL: http://archive.ubuntu.com/ubuntu/
-OSVersion: bionic
-Include: software-properties-common
+Bootstrap: library
+From: ubuntu:18.04
+Stage: build
 
 %labels
 
@@ -21,10 +20,13 @@ Include: software-properties-common
     export LC_ALL=C
     export OMPI_MCA_btl_vader_single_copy_mechanism=none
     export PATH=$PATH:/opt/openfoam7/bin
+    source /opt/openfoam7/etc/bashrc
 
 %post -c /bin/bash
 
     # Update Ubuntu Cache and begin install
+    apt update -y
+    apt install -y software-properties-common
     apt-add-repository universe
     export DEBIAN_FRONTEND=noninteractive; apt-get -y update --allow-unauthenticated \
     && apt-get install -y --allow-unauthenticated \
