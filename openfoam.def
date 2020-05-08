@@ -43,9 +43,6 @@ Stage: build
 	apt-get install -y --no-install-recommends openfoam7
 	rm -rf /var/lib/apt/lists/*
 
-    # Set the environment for OpenFoam Users
-    echo ". /opt/openfoam7/etc/bashrc" >> $SINGULARITY_ENVIRONMENT
-
     # Clean Up 
     apt clean
     apt autoclean
