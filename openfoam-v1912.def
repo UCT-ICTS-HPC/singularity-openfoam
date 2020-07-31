@@ -76,7 +76,7 @@ From: centos:7
     . etc/bashrc 
 
     ### Compile and install
-    ./Allwmake
+    ./Allwmake -j 10
 
     rm -rf build
 
