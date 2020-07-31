@@ -2,7 +2,7 @@
 env.SW_LOCATION = '/opt/exp_soft/singularity-containers/openfoam'
 env.CONTAINER_NAME = 'openfoam'
 env.CONTAINER_FMT = 'sif'
-env.CONTAINER_DEF = 'openfoam.def'
+env.CONTAINER_DEF = 'openfoam-v1912.def'
 env.CONTAINER_DIR = 'container'
 env.APP_VER = 'v7'
 env.SINGULARITY_BIN = '/usr/bin/singularity'
