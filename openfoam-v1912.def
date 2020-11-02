@@ -14,7 +14,7 @@ From: centos:7
     yum groupinstall -y 'Development Tools' &&  \
     yum install -y wget git  \
                    openssl-devel libuuid-devel  \
-                   metis.x86_64 metis-devel.x86_64
+                   metis.x86_64 metis-devel.x86_64 pip
 
     ### Install OpenMPI
     # Why openmpi-4.x is needed: https://github.com/hpcng/singularity/issues/2590
@@ -33,7 +33,6 @@ From: centos:7
     export MPI_BIN=$MPI_DIR/bin >> $SINGULARITY_ENVIRONMENT
     export MPI_LIB=$MPI_DIR/lib >> $SINGULARITY_ENVIRONMENT
     export MPI_INC=$MPI_DIR/include >> $SINGULARITY_ENVIRONMENT
-
     export PATH=$MPI_BIN:$PATH >> $SINGULARITY_ENVIRONMENT
     export LD_LIBRARY_PATH=$MPI_LIB:$LD_LIBRARY_PATH >> $SINGULARITY_ENVIRONMENT
 
@@ -54,6 +53,15 @@ From: centos:7
     wget https://sourceforge.net/projects/$pkg/files/$vrs/ThirdParty-$vrs.tgz
     tar -xzf ThirdParty-$vrs.tgz
     rm -f ThirdParty-$vrs.tgz
+
+    ### Install Mercurial. 
+    pip install mercurial
+
+    ### Install swak4foam
+    cd
+    hg clone http://hg.code.sf.net/p/openfoam-extend/swak4Foam swak4Foam
+    cd swak4Foam
+    ./AllwmakeAll -j 8
 
     ### Change dir to OpenFOAM-version
     cd $pkg-$vrs
@@ -76,10 +84,8 @@ From: centos:7
     . etc/bashrc 
 
     ### Compile and install
-    ./Allwmake -j 10
-
+    ./Allwmake -j 8
     rm -rf build
-
     cd $base/ThirdParty-$vrs
     rm -rf build
     rm -rf boost_1_64_0 CGAL-4.9.1 fftw-3.3.7 kahip-2.12 openmpi-1.10.7 ParaView-v5.6.3 scotch_6.0.9
@@ -94,13 +100,10 @@ From: centos:7
     export MPI_BIN=$MPI_DIR/bin
     export MPI_LIB=$MPI_DIR/lib
     export MPI_INC=$MPI_DIR/include
-
     export PATH=$MPI_BIN:$PATH
     export LD_LIBRARY_PATH=$MPI_LIB:$LD_LIBRARY_PATH
 
 %runscript
     echo
     echo "OpenFOAM installation is available under $WM_PROJECT_DIR"
-h
-H
     echo
