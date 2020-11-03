@@ -14,7 +14,7 @@ From: centos:7
     yum groupinstall -y 'Development Tools' &&  \
     yum install -y wget git  \
                    openssl-devel libuuid-devel  \
-                   metis.x86_64 metis-devel.x86_64 python3 python3-pip python3-devel
+                   metis.x86_64 metis-devel.x86_64 python3 python3-pip python3-devel readline-devel
 
     ### Install OpenMPI
     # Why openmpi-4.x is needed: https://github.com/hpcng/singularity/issues/2590
@@ -55,16 +55,9 @@ From: centos:7
     rm -f ThirdParty-$vrs.tgz
 
     ### Install Mercurial. 
-
     pip3 install mercurial
 
-    ### Install swak4foam
-    cd
-    hg clone http://hg.code.sf.net/p/openfoam-extend/swak4Foam swak4Foam
-    cd swak4Foam
-    ./AllwmakeAll -j 8
-
-    ### Change dir to OpenFOAM-version
+      ### Change dir to OpenFOAM-version
     cd $pkg-$vrs
     
     sed -i 's/boost_version=boost_1_64_0/boost_version=boost-none/' etc/config.sh/CGAL
@@ -95,6 +88,12 @@ From: centos:7
 
     ### Source bashrc at runtime
     echo '. /opt/OpenFOAM/OpenFOAM-v1912/etc/bashrc' >> $SINGULARITY_ENVIRONMENT
+    
+    ### Install swak4foam
+    cd
+    hg clone http://hg.code.sf.net/p/openfoam-extend/swak4Foam swak4Foam
+    cd swak4Foam
+    ./AllwmakeAll -j 8
 
 %environment
     export MPI_DIR=/opt/openmpi-4.0.4
