@@ -14,7 +14,7 @@ From: centos:7
     yum groupinstall -y 'Development Tools' &&  \
     yum install -y wget git  \
                    openssl-devel libuuid-devel  \
-                   metis.x86_64 metis-devel.x86_64 python3 python3-pip python3-devel readline-devel
+                   metis.x86_64 metis-devel.x86_64 python3 python3-pip python3-devel readline-devel bison 
 
     ### Install OpenMPI
     # Why openmpi-4.x is needed: https://github.com/hpcng/singularity/issues/2590
