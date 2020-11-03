@@ -39,6 +39,7 @@ From: centos:7
     ### OpenFOAM version
     pkg=OpenFOAM
     vrs=v1912
+    swak4foam_dir=/opt/swak4foam
 
     ### Install under /opt
     base=/opt/$pkg
@@ -90,7 +91,7 @@ From: centos:7
     echo '. /opt/OpenFOAM/OpenFOAM-v1912/etc/bashrc' >> $SINGULARITY_ENVIRONMENT
     
     ### Install swak4foam
-    cd
+    mkdir -p $swak4foam_dir && cd $swak4foam_dir
     hg clone http://hg.code.sf.net/p/openfoam-extend/swak4Foam swak4Foam
     cd swak4Foam
     ./AllwmakeAll -j 8
