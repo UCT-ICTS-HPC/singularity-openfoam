@@ -55,7 +55,7 @@ From: centos:7
     rm -f ThirdParty-$vrs.tgz
 
     ### Install Mercurial. 
-    pip install mercurial
+    pip3 install mercurial
 
     ### Install swak4foam
     cd
