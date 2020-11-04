@@ -36,7 +36,7 @@ node('gpu') {
       // Make application available to HPC users 
       sh "cp $CONTAINER_DIR/$APP_VER-$CONTAINER_NAME-$BUILD_NUMBER.$CONTAINER_FMT $SW_LOCATION"
       dir(SW_LOCATION) {
-         sh "ln -sf $SW_LOCATION/$APP_VER-$CONTAINER_NAME-$BUILD_NUMBER.$CONTAINER_FMT $CONTAINER_NAME-$APP_VER.$CONTAINER_FMT"
+         sh "ln -sf $SW_LOCATION/$APP_VER-$CONTAINER_NAME-$BUILD_NUMBER.$CONTAINER_FMT $CONTAINER_NAME-v1912.$CONTAINER_FMT"
       }
       echo "Generating software environment module file"
     }   
