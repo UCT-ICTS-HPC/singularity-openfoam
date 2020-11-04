@@ -39,7 +39,6 @@ From: centos:7
     ### OpenFOAM version
     pkg=OpenFOAM
     vrs=v1912
-    swak4foam_dir=/opt/swak4foam
 
     ### Install under /opt
     base=/opt/$pkg
@@ -58,7 +57,7 @@ From: centos:7
     ### Install Mercurial. 
     pip3 install mercurial
 
-      ### Change dir to OpenFOAM-version
+    ### Change dir to OpenFOAM-version
     cd $pkg-$vrs
     
     sed -i 's/boost_version=boost_1_64_0/boost_version=boost-none/' etc/config.sh/CGAL
@@ -91,7 +90,7 @@ From: centos:7
     echo '. /opt/OpenFOAM/OpenFOAM-v1912/etc/bashrc' >> $SINGULARITY_ENVIRONMENT
     
     ### Install swak4foam
-    mkdir -p $swak4foam_dir && cd $swak4foam_dir
+    cd $base/ThirdParty-$vrs
     hg clone http://hg.code.sf.net/p/openfoam-extend/swak4Foam swak4Foam
     cd swak4Foam
     ./AllwmakeAll -j 8
